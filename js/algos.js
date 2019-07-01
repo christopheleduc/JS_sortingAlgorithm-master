@@ -15,6 +15,7 @@ function distanceFromGrenoble(city)
 //console.log("Objet city: " + city);
 //console.log("City Lat: " + city.latitude);
 //console.log("City Long: " + city.longitude);
+//console.log("Objet csvData: " + csvData);
 
   let lat1=GrenobleLat;
   let lat2= parseFloat (city.latitude);
@@ -40,12 +41,15 @@ function distanceFromGrenoble(city)
 // Swap 2 values in array csvData
 // i is the index of the first city
 // j is the index of the second city
-function swap(i,j)
+function swap(i, j)
 {
   displayBuffer.push(['swap', i, j]); // Do not delete this line (for display)
+  var bufferedIndex = csvData[i];
+  csvData[i] = csvData[j];
+  csvData[j] = bufferedIndex;
+  //csvData.swap (i,j);
   console.log("swap - implement me !");
-  
-
+    
 }
 
 // Returns true if city with index i in csvData is closer to Grenoble than city with index j
@@ -55,12 +59,30 @@ function isLess(i, j)
 {
   displayBuffer.push(['compare', i, j]); // Do not delete this line (for display)
   console.log("isLess - implement me !");
-}
 
+  let firstIndex = distanceFromGrenoble(csvData[i]);
+  let secondIndex = distanceFromGrenoble(csvData[j]);
+  if (firstIndex < secondIndex) {
+    console.log("isLess: TRUE!")
+    return true;
+  } else {
+    console.log("isLess: FALSE!")
+    return false;
+  }
+}
 
 function insertsort()
 {
   console.log("insertsort - implement me !");
+  console.log("Objet csvData: " + csvData);
+  for (let z=1; z < csvData.length; ++z) {
+    for (let k = z; k > 0; --k) {
+      if (isLess(k, k-1)) {
+        swap(k,k-1);
+      }
+      
+    }
+  }
 }
 
 function selectionsort()
