@@ -48,7 +48,7 @@ function swap(i, j)
   csvData[i] = csvData[j];
   csvData[j] = bufferedIndex;
   //csvData.swap (i,j);
-  console.log("swap - implement me !");
+  console.log("swap - complete !");
     
 }
 
@@ -58,7 +58,7 @@ function swap(i, j)
 function isLess(i, j)
 {
   displayBuffer.push(['compare', i, j]); // Do not delete this line (for display)
-  console.log("isLess - implement me !");
+  console.log("isLess - complete !");
 
   let firstIndex = distanceFromGrenoble(csvData[i]);
   let secondIndex = distanceFromGrenoble(csvData[j]);
@@ -73,21 +73,28 @@ function isLess(i, j)
 
 function insertsort()
 {
-  console.log("insertsort - implement me !");
+  console.log("insertsort - complete !");
   console.log("Objet csvData: " + csvData);
   for (let z=1; z < csvData.length; ++z) {
-    for (let k = z; k > 0; --k) {
-      if (isLess(k, k-1)) {
-        swap(k,k-1);
-      }
-      
+    for (let k = z; k > 0 && isLess(k, k-1); --k) {  
+        swap(k, k-1);
     }
   }
 }
 
 function selectionsort()
 {
-  console.log("selectionsort - implement me !");
+  console.log("selectionsort - complete !");
+  //console.log("Test: " + csvData.length);
+  for (let alpha=0; alpha < csvData.length; ++alpha) {
+    let epsilon=alpha;
+    for (let beta = alpha+1; beta < csvData.length; ++beta) {
+      if (isLess(beta, epsilon)) {
+        epsilon=beta;
+      }
+    }
+    swap(alpha,epsilon);
+  }
 }
 
 function bubblesort()
