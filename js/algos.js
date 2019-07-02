@@ -119,7 +119,7 @@ function bubblesort()
 
 function shellsort()
 {
-  console.log("shellsort - implement me !");
+  console.log("shellsort - complete !");
   let h = 1;
   while (h < csvData.length) {
     h = 3 * h + 1;
@@ -134,14 +134,47 @@ function shellsort()
       }
     }
   }
-  
-  //return csvData;
-  //distanceFromGrenoble(csvData);
+}
+
+function splitArray(array, chunk)
+{
+  var i,j, rslt = [];
+  //chunk = chunk - 1;
+  for (i=0,j=array.length; i<j; i+=chunk) {
+  rslt.push(array.slice(i,i+chunk));
+  }
+  return rslt;
 }
 
 function mergesort()
 {
   console.log("mergesort - implement me !");
+  // Split in half
+  let scinder = Math.floor(csvData.length / 2);
+  console.log(scinder);
+  let retourTab = splitArray(csvData, scinder);
+  console.log(retourTab);
+
+  //Recursive sort
+  let tab1 = $.extend(true, [], retourTab[0]);
+  console.log("tableau 1: ");
+  console.log(tab1);
+  let tab2 = $.extend(true, [], retourTab[1]);
+  console.log("tableau 2: ");
+  console.log(tab2);
+
+  // Variables
+  let n = csvData.length;
+  let m = scinder;
+  let i = 1;
+  let j = m + 1;
+  let k = 1;
+  console.log("Var:" + " n: " + n + " m: " + m + " i: " + i + " j: " + j + " k: " + k);
+
+  // Traitement
+  while (i <= m && j <= n) {}
+
+
 }
 
 function heapsort()
