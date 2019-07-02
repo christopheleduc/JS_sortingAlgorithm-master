@@ -99,12 +99,44 @@ function selectionsort()
 
 function bubblesort()
 {
-  console.log("bubblesort - implement me !");
+  console.log("bubblesort - complete !");
+  for (let i=0; i < csvData.length; ++i) {
+    let swapped = false;
+    //let epsilon=alpha;
+    for (let j = i+1; j < csvData.length; ++j) {
+      if (isLess(j, i)) {
+        //epsilon=beta;
+        swap(i,j);
+        swapped = true;
+      } else {
+        console.log("False!");
+      }
+    }
+    
+  }
+
 }
 
 function shellsort()
 {
   console.log("shellsort - implement me !");
+  let h = 1;
+  while (h < csvData.length) {
+    h = 3 * h + 1;
+  }
+  while (h > 0) {
+    h = Math.floor (h / 3);
+    for (k = 0; k < h ; ++k) {
+      for (let i = k; i < csvData.length; i = i + h) {
+        for (let z = i; z > 0 && isLess(z-1, z); --z) {
+          swap(z, z-1);
+        }
+      }
+    }
+  }
+  
+  //return csvData;
+  //distanceFromGrenoble(csvData);
 }
 
 function mergesort()
