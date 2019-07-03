@@ -149,6 +149,7 @@ function shellsort()
 function mergesort()
 {
   let tri = mergeSort(csvData);
+  console.log(tri);
   //distanceFromGrenoble(tri);
 }
 
@@ -172,16 +173,22 @@ function mergeSort (unsortedArray) {
 
 // Merge the two arrays: left and right
 function merge (left, right) {
-  displayBuffer.push(['compare', left[leftIndex], right[rightIndex]]); // Do not delete this line (for display)
+  // displayBuffer.push(['compare', left[leftIndex], right[rightIndex]]); // Do not delete this line (for display)
   let resultArray = [], leftIndex = 0, rightIndex = 0;
 
   // We will concatenate values into the resultArray in order
   while (leftIndex < left.length && rightIndex < right.length) {
+    displayBuffer.push(['compare', leftIndex, rightIndex]); // Do not delete this line (for display)
+    displayBuffer.push(['swap', leftIndex, rightIndex]); // Do not delete this line (for display)
+    console.log("I: " + left[leftIndex] + " J: " + right[rightIndex]);
+    console.log(left[leftIndex]);
     if (left[leftIndex] < right[rightIndex]) {
       resultArray.push(left[leftIndex]);
+      //swap(leftIndex,rightIndex);
       leftIndex++; // move left array cursor
     } else {
       resultArray.push(right[rightIndex]);
+      //swap(rightIndex,leftIndex);
 			rightIndex++; // move right array cursor
     }
   }
