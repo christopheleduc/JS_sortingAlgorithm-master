@@ -148,12 +148,19 @@ function shellsort()
 
 function mergesort()
 {
-  let tri = mergeSort(csvData);
-  console.log(tri);
-  //distanceFromGrenoble(tri);
+  let tabRetour = mergeSorte(csvData);
+  console.log(tabRetour);
+  for ( let i=0; i < tabRetour.length; ++i ) {
+    for ( let j=0; j < csvData.length; ++j) {
+      if (csvData[j] == tabRetour[i]) {
+        swap (j,i);
+
+      } 
+    }
+  }
 }
 
-function mergeSort (unsortedArray) {
+function mergeSorte (unsortedArray) {
   // No need to sort the array if the array only has one element or empty
   if (unsortedArray.length <= 1) {
     return unsortedArray;
@@ -167,37 +174,119 @@ function mergeSort (unsortedArray) {
 
   // Using recursion to combine the left and right
   return merge(
-    mergeSort(left), mergeSort(right)
+    mergeSorte(left), mergeSorte(right)
   );
 }
 
 // Merge the two arrays: left and right
 function merge (left, right) {
-  // displayBuffer.push(['compare', left[leftIndex], right[rightIndex]]); // Do not delete this line (for display)
   let resultArray = [], leftIndex = 0, rightIndex = 0;
 
   // We will concatenate values into the resultArray in order
   while (leftIndex < left.length && rightIndex < right.length) {
-    displayBuffer.push(['compare', leftIndex, rightIndex]); // Do not delete this line (for display)
-    displayBuffer.push(['swap', leftIndex, rightIndex]); // Do not delete this line (for display)
-    console.log("I: " + left[leftIndex] + " J: " + right[rightIndex]);
-    console.log(left[leftIndex]);
-    if (left[leftIndex] < right[rightIndex]) {
+    if (left[leftIndex].dist < right[rightIndex].dist) {
       resultArray.push(left[leftIndex]);
-      //swap(leftIndex,rightIndex);
       leftIndex++; // move left array cursor
     } else {
       resultArray.push(right[rightIndex]);
-      //swap(rightIndex,leftIndex);
 			rightIndex++; // move right array cursor
     }
   }
-  
+
   // We need to concat to the resultArray because there will be one element left over after the while loop
   return resultArray
           .concat(left.slice(leftIndex))
           .concat(right.slice(rightIndex));
 }
+
+// function mergeSorte (unsortedArray) {
+//   // No need to sort the array if the array only has one element or empty
+//   if (unsortedArray.length <= 1) {
+//     return unsortedArray;
+//   }
+//   // In order to divide the array in half, we need to figure out the middle
+//   const middle = Math.floor(unsortedArray.length / 2);
+
+//   // This is where we will be dividing the array into left and right
+//   const left = unsortedArray.slice(0, middle);
+//   const right = unsortedArray.slice(middle);
+
+//   // Using recursion to combine the left and right
+//   return merge(
+//     mergeSorte(left), mergeSorte(right)
+//   );
+// }
+
+// // Merge the two arrays: left and right
+// function merge (left, right) {
+//   let resultArray = [], leftIndex = 0, rightIndex = 0;
+
+//   // We will concatenate values into the resultArray in order
+//   while (leftIndex < left.length && rightIndex < right.length) {
+//     if (left[leftIndex] < right[rightIndex]) {
+//       resultArray.push(left[leftIndex]);
+//       leftIndex++; // move left array cursor
+//     } else {
+//       resultArray.push(right[rightIndex]);
+// 			rightIndex++; // move right array cursor
+//     }
+//   }
+
+//   // We need to concat to the resultArray because there will be one element left over after the while loop
+//   return resultArray
+//           .concat(left.slice(leftIndex))
+//           .concat(right.slice(rightIndex));
+// }
+
+// function fusionner(t1, t2) {  
+//   var i = 0, j = 0, k = 0;  
+//   var n = t1.length, m = t2.length;  
+//   var t = new Array(n+m);  
+  
+//   while (i < n && j < m) {  
+//     if (t1[i] < t2[j]) {  
+//       t[k] = t1[i];  
+//       i++;  
+//     } else {  
+//       t[k] = t2[j];  
+//       j++;  
+//     }
+//     k++;  
+//   }  
+//   while (i < n) {  
+//     t[k] = t1[i];
+//     //swap(k,i); 
+//     i++;  
+//     k++;  
+//   }  
+//   while (j < m) {  
+//     t[k] = t2[j];
+//     //swap(k,j); 
+//     j++;  
+//     k++;  
+//   }
+//   //swap(i,j);
+//   //console.log(t);
+//   return t;  
+// }
+
+// function trier(sortedArray) {  
+  
+//   //const n = sortedArray.length;
+//   const length = sortedArray.length;  
+//   const left, right;
+//   const middle=Math.floor(length / 2);  
+  
+//   if (length == 0 || length == 1) {  
+//     return sortedArray;  
+//   } else {  
+//     left = trier(sortedArray.slice(0,middle));  
+//     right = trier(sortedArray.slice(middle));
+//     console.log(middle);
+//     return fusionner (left, right);  
+//   }  
+// }
+
 
 function heapsort()
 {

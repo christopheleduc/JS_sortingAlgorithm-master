@@ -91,3 +91,47 @@ function merge (left, right) {
           .concat(left.slice(leftIndex))
           .concat(right.slice(rightIndex));
 }
+
+///////////////////////////////////////////////
+
+function fusionner(t1, t2) {  
+  var i = 0, j = 0, k = 0;  
+  var n = t1.length, m = t2.length;  
+  var t = new Array(n+m);  
+  
+  while (i < n && j < m) {  
+    if (t1[i] < t2[j]) {  
+      t[k] = t1[i];  
+      i++;  
+    } else {  
+      t[k] = t2[j];  
+      j++;  
+    }  
+    k++;  
+  }  
+  while (i < n) {  
+    t[k] = t1[i];  
+    i++;  
+    k++;  
+  }  
+  while (j < m) {  
+    t[k] = t2[j];  
+    j++;  
+    k++;  
+  }  
+  return t;  
+}  
+  
+function trier(t) {  
+  
+  var n = t.length;  
+  var t1, t2;  
+  
+  if (n == 0 || n == 1) {  
+    return t;  
+  } else {  
+    t1 = trier(t.slice(0,n/2));  
+    t2 = trier(t.slice(n/2));  
+    return fusionner (t1,t2);  
+  }  
+}
