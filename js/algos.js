@@ -199,8 +199,45 @@ function heapsort()
 
 function quicksort()
 {
-  console.log("quicksort - implement me !");
+  console.log("quicksort - coplete !");
+  const firstLastIndex = csvData.length - 1;
+  let resultTab = quickSorte(csvData, 0, firstLastIndex);
+  console.log(resultTab);
 }
+
+function quickSorte(arr, left, right){
+  var len = arr.length, 
+  pivot,
+  partitionIndex;
+
+
+ if(left < right){
+   pivot = right;
+   partitionIndex = partition(arr, pivot, left, right);
+   
+  //sort left and right
+  quickSorte(arr, left, partitionIndex - 1);
+  quickSorte(arr, partitionIndex + 1, right);
+ }
+ return arr;
+}
+
+function partition(arr, pivot, left, right){
+  var pivotValue = arr[pivot],
+      partitionIndex = left;
+
+  for(var i = left; i < right; i++){
+   if(arr[i].dist < pivotValue.dist){
+    //  swap(arr, i, partitionIndex);
+    swap( i, partitionIndex);
+     partitionIndex++;
+   }
+ }
+//  swap(arr, right, partitionIndex);
+swap(right, partitionIndex);
+ return partitionIndex;
+}
+
 function quick3sort()
 {
   console.log("quick3sort - implement me !");
