@@ -1,3 +1,14 @@
+// function splitArray(array, chunk)
+// {
+//   var i,j, rslt = [];
+//   //chunk = chunk - 1;
+//   for (i=0,j=array.length; i<j; i+=chunk) {
+//   rslt.push(array.slice(i,i+chunk));
+//   }
+//   return rslt;
+// }
+  
+  
   // Split in half
   let scinder = Math.floor(csvData.length / 2);
   console.log(scinder);

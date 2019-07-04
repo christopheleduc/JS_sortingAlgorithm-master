@@ -136,157 +136,61 @@ function shellsort()
   }
 }
 
-// function splitArray(array, chunk)
-// {
-//   var i,j, rslt = [];
-//   //chunk = chunk - 1;
-//   for (i=0,j=array.length; i<j; i+=chunk) {
-//   rslt.push(array.slice(i,i+chunk));
-//   }
-//   return rslt;
-// }
-
+// Fonction qui appelle le tri par fusion et affiche le résultat
 function mergesort()
 {
+  // Recupère le tableau trié
   let tabRetour = mergeSorte(csvData);
+  // Affiche le résultat dans la console
   console.log(tabRetour);
+  // réalise une comparaison et un tri pour affichage
   for ( let i=0; i < tabRetour.length; ++i ) {
     for ( let j=0; j < csvData.length; ++j) {
       if (csvData[j] == tabRetour[i]) {
         swap (j,i);
-
       } 
     }
   }
 }
 
 function mergeSorte (unsortedArray) {
-  // No need to sort the array if the array only has one element or empty
+  // On test si le tableau est vide ou n'a qu'un parametre
   if (unsortedArray.length <= 1) {
     return unsortedArray;
   }
-  // In order to divide the array in half, we need to figure out the middle
+  // constante pour diviser le tableau en deux (arrondi pour les impaires)
   const middle = Math.floor(unsortedArray.length / 2);
 
-  // This is where we will be dividing the array into left and right
+  // On divise le tableau en deux
   const left = unsortedArray.slice(0, middle);
   const right = unsortedArray.slice(middle);
 
-  // Using recursion to combine the left and right
+  // On utilise la recursion pour fusionner les tableaux gauche et droite
   return merge(
     mergeSorte(left), mergeSorte(right)
   );
 }
 
-// Merge the two arrays: left and right
+// Fusionne en triant les tableaux
 function merge (left, right) {
   let resultArray = [], leftIndex = 0, rightIndex = 0;
 
-  // We will concatenate values into the resultArray in order
+  // On concactene les valeurs ordonnées dans resultArray
   while (leftIndex < left.length && rightIndex < right.length) {
     if (left[leftIndex].dist < right[rightIndex].dist) {
       resultArray.push(left[leftIndex]);
-      leftIndex++; // move left array cursor
+      leftIndex++; // incrémente l'indexe pour le tableau left
     } else {
       resultArray.push(right[rightIndex]);
-			rightIndex++; // move right array cursor
+			rightIndex++; // incrémente l'indexe pour le tableau right
     }
   }
 
-  // We need to concat to the resultArray because there will be one element left over after the while loop
+  // On concactene les valeurs dans resultArray lorsqu'il n'y a plus qu'un élément dans le tableau left
   return resultArray
           .concat(left.slice(leftIndex))
           .concat(right.slice(rightIndex));
 }
-
-// function mergeSorte (unsortedArray) {
-//   // No need to sort the array if the array only has one element or empty
-//   if (unsortedArray.length <= 1) {
-//     return unsortedArray;
-//   }
-//   // In order to divide the array in half, we need to figure out the middle
-//   const middle = Math.floor(unsortedArray.length / 2);
-
-//   // This is where we will be dividing the array into left and right
-//   const left = unsortedArray.slice(0, middle);
-//   const right = unsortedArray.slice(middle);
-
-//   // Using recursion to combine the left and right
-//   return merge(
-//     mergeSorte(left), mergeSorte(right)
-//   );
-// }
-
-// // Merge the two arrays: left and right
-// function merge (left, right) {
-//   let resultArray = [], leftIndex = 0, rightIndex = 0;
-
-//   // We will concatenate values into the resultArray in order
-//   while (leftIndex < left.length && rightIndex < right.length) {
-//     if (left[leftIndex] < right[rightIndex]) {
-//       resultArray.push(left[leftIndex]);
-//       leftIndex++; // move left array cursor
-//     } else {
-//       resultArray.push(right[rightIndex]);
-// 			rightIndex++; // move right array cursor
-//     }
-//   }
-
-//   // We need to concat to the resultArray because there will be one element left over after the while loop
-//   return resultArray
-//           .concat(left.slice(leftIndex))
-//           .concat(right.slice(rightIndex));
-// }
-
-// function fusionner(t1, t2) {  
-//   var i = 0, j = 0, k = 0;  
-//   var n = t1.length, m = t2.length;  
-//   var t = new Array(n+m);  
-  
-//   while (i < n && j < m) {  
-//     if (t1[i] < t2[j]) {  
-//       t[k] = t1[i];  
-//       i++;  
-//     } else {  
-//       t[k] = t2[j];  
-//       j++;  
-//     }
-//     k++;  
-//   }  
-//   while (i < n) {  
-//     t[k] = t1[i];
-//     //swap(k,i); 
-//     i++;  
-//     k++;  
-//   }  
-//   while (j < m) {  
-//     t[k] = t2[j];
-//     //swap(k,j); 
-//     j++;  
-//     k++;  
-//   }
-//   //swap(i,j);
-//   //console.log(t);
-//   return t;  
-// }
-
-// function trier(sortedArray) {  
-  
-//   //const n = sortedArray.length;
-//   const length = sortedArray.length;  
-//   const left, right;
-//   const middle=Math.floor(length / 2);  
-  
-//   if (length == 0 || length == 1) {  
-//     return sortedArray;  
-//   } else {  
-//     left = trier(sortedArray.slice(0,middle));  
-//     right = trier(sortedArray.slice(middle));
-//     console.log(middle);
-//     return fusionner (left, right);  
-//   }  
-// }
-
 
 function heapsort()
 {
