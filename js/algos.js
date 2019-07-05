@@ -128,9 +128,9 @@ function shellsort()
   }
   while (h > 0) {
     h = Math.floor (h / 3);
-    for (k = 0; k < h ; k+=h) {
-      for (let i = k; i < csvData.length; i = i + h) {
-        for (let z = i; z > 0 && isLess(z, z-h); z-=h) {
+    for (k = 0; k < h ; k++) {
+      for (let i = k+h; i < csvData.length; i = i + h) {
+        for (let z = i; z > k && isLess(z, z-h); z-=h) {
           swap(z, z-h);
         }
       }
