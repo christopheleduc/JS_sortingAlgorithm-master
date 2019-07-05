@@ -103,10 +103,10 @@ function bubblesort()
   for (let i=0; i < csvData.length; ++i) {
     let swapped = false;
     //let epsilon=alpha;
-    for (let j = i+1; j < csvData.length; --j) {
+    for (let j = csvData.length-1 ; j >= i+1 ; --j) {
       if (isLess(j, j-1)) {
         //epsilon=beta;
-        swap(i,j-1);
+        swap(j,j-1);
         swapped = true;
       } else {
         console.log("False!");
