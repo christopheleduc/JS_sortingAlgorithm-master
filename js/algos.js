@@ -103,16 +103,18 @@ function bubblesort()
   for (let i=0; i < csvData.length; ++i) {
     let swapped = false;
     //let epsilon=alpha;
-    for (let j = i+1; j < csvData.length; ++j) {
-      if (isLess(j, i)) {
+    for (let j = i+1; j < csvData.length; --j) {
+      if (isLess(j, j-1)) {
         //epsilon=beta;
-        swap(i,j);
+        swap(i,j-1);
         swapped = true;
       } else {
         console.log("False!");
       }
     }
-    
+    if (swapped == false) {
+      break;
+    }
   }
 
 }
@@ -126,10 +128,10 @@ function shellsort()
   }
   while (h > 0) {
     h = Math.floor (h / 3);
-    for (k = 0; k < h ; ++k) {
+    for (k = 0; k < h ; k+=h) {
       for (let i = k; i < csvData.length; i = i + h) {
-        for (let z = i; z > 0 && isLess(z-1, z); --z) {
-          swap(z, z-1);
+        for (let z = i; z > 0 && isLess(z, z-h); z-=h) {
+          swap(z, z-h);
         }
       }
     }
@@ -228,7 +230,7 @@ function siftDown(arr, start, end){
      if(arr[toSwap].dist < arr[child].dist){
        swap(toSwap, child);
      }
-     if(child+1 <= end && arr[toSwap].dist < arr[child+1].dist){
+     if( child+1 <= end && arr[toSwap].dist < arr[child+1].dist){
        swap(toSwap, child+1)
      }
      if(arr[toSwap].dist != arr[root].dist){
@@ -245,7 +247,7 @@ function siftDown(arr, start, end){
 
 function quicksort()
 {
-  console.log("quicksort - coplete !");
+  console.log("quicksort - complete !");
   const firstLastIndex = csvData.length - 1;
   let resultTab = quickSorte(csvData, 0, firstLastIndex);
   console.log(resultTab);
