@@ -4,12 +4,16 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "console": "integratedTerminal",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\js\\algos.js"
-        }
-    ]
+                {
+                    "name": "Launch localhost",
+                    "type": "firefox",
+                    "request": "launch",
+                    "reAttach": true,
+                    "url": "http://localhost:8123/index.html",
+                    "pathMappings": [{
+                        "url": "http://localhost:8123",
+                        "path": "${workspaceFolder}"
+                    }]
+                }
+            ]
 }
